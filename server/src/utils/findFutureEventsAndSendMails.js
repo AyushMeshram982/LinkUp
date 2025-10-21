@@ -12,13 +12,15 @@ const sendCancellationEmail = async (to, eventTitle) => {
 }
 
 const findFutureEventAndNotifyUsersOfCancelledEvents = async (userIdo) => {
-    const userId = new mongoose.Types.ObjectId({userIdo});
+    const userId = new mongoose.Types.ObjectId(userIdo);
 
     const futureEvents = await Event.aggregate([
     {
+      //1. matching future events hosted by user
       $match: {
         hostId: userId,
         date: { $gte: new Date() },
+        // Only match events that have registered attendees
         registeredAttendees: { $exists: true, $ne: [] }
       }
     },
@@ -29,13 +31,15 @@ const findFutureEventAndNotifyUsersOfCancelledEvents = async (userIdo) => {
         registeredAttendees: 1
       }
     },
+    //2. deconstructing the array of objects
     {
       $unwind: "$registeredAttendees"
     },
     {
+      //3. lookup user details using the nested userId field
       $lookup: {
         from: "users",
-        localField: "registeredAttendees",
+        localField: "registeredAttendees.userId",
         foreignField: "_id",
         as: "attendee"
       }

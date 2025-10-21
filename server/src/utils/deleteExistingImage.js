@@ -1,12 +1,12 @@
 import fs from 'fs'
 import path from 'path'
 
-const delteProfileImageFromDisk = (userProfileImageUrl) => {
+const deleteImageFromDisk = (ImageUrl) => {
     if(!userProfileImageUrl){
         return;
     }
 
-    const imagePathOnDisk = path.join(path.resolve(), 'server', 'public', userProfileImageUrl);
+    const imagePathOnDisk = path.join(path.resolve(), 'server', 'public', ImageUrl);
 
     if(fs.existsSync(imagePathOnDisk)){
 
@@ -24,4 +24,4 @@ const delteProfileImageFromDisk = (userProfileImageUrl) => {
     }
 }
 
-export { delteProfileImageFromDisk }
+export { deleteImageFromDisk }

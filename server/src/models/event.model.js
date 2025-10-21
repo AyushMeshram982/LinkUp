@@ -52,14 +52,31 @@ const eventSchema = new mongoose.Schema({
         default: false
     },
 
+    price: {
+        type: Number
+    },
+
+    hours: {
+        type: Number
+    },
+
     totalSeats: {
         type: Number,
         required: true
     },
 
     registeredAttendees: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+        seats: {
+            type: Number,
+            required: true,
+            min: 1
+        }
+
     }],
 
     likes: [{
@@ -85,6 +102,21 @@ const eventSchema = new mongoose.Schema({
     isCancelled: {
         type: Boolean,
         default: false
+    },
+
+    //QR Code Check-in Fields
+    qrCheckinToken: {
+        type: String,
+        unique: true,
+        spare: true    //Allows null values, as not all events will have a QR token immediately
+    },
+
+    qrTokenExpires: {
+        type: String
+    },
+
+    qrCodeUrl: {
+        type: String
     }
 
 })

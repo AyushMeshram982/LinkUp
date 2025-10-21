@@ -15,7 +15,7 @@ import { ownershipTransferAndGroupLeaving } from "../utils/groupOwnershipTransfe
 import { removeLikes } from "../utils/removeLikesFromEvents.js"
 import { changeMessageSenderId } from "../utils/changeMessageSenderId.js";
 import { removeUserCommentsFromEvents } from "../utils/removeUserCommentsFromEvents.js";
-import { deleteProfileImageFromDisk } from "../utils/deleteProfileImage.js"
+import { deleteImageFromDisk } from "../utils/deleteExistingImage.js"
 
 
 // this function helps in creating the token
@@ -437,7 +437,7 @@ const deleteUser = async(req, res) => {
         );
 
         //deleting the user's profile image
-        await deleteProfileImageFromDisk(user.profileImageUrl);
+        await deleteImageFromDisk(user.profileImageUrl);
 
         //deleting the user account
         await User.findByIdAndDelete(userId)
@@ -454,5 +454,45 @@ const deleteUser = async(req, res) => {
 
 };
 
+const getHostedQRs = async (req, res) => {
 
-export { register, login, userProfile, updateUser, updatePassword, forgotPassword, verifyOtp, resetPassword, deleteUser }
+    const userId = req.user._id;
+
+    try{
+        //finding all events hosted by this user sorted by date and time (latest events first)
+        const hostedEvents = await Event.find({ hostId: userId }).select('title date time qrCodeUrl qrTokenExpires totalSeats registeredAttendees').sort({ date: -1, time: 1 })
+
+        //process the data to calculate remaining seats and check expiry
+        const qrList = hostedEvents.map(event => {
+            //calculate total seats taken and check expiry
+            const seatsTaken = event.registeredAttendees.reduce((sum, reg) => sum + reg.seats, 0);
+
+            return {
+                eventId: event._id,
+                title: event.title,
+                date: event.date,
+                time: event.time,
+                qrCodeUrl: event.qrCodeUrl,
+                qrTokenExpires: event.qrTokenExpires,
+                isExpired: event.qrTokenExpires < new Date(),
+                totalSeats: event.totalSeats,
+                seatsTaken: seatsTaken,
+                seatsRemaining: event.totalSeats - seatsTaken
+            };
+
+        });
+
+        //success response
+        return res.status(200).json(qrList);
+
+    }
+    catch(error){
+        console.error("Fetch Hosted QRs Error:", error);
+
+        return res.status(500).json({ error: `Server error while fetching hosted QR codes: ${error.message}` });
+    }
+
+};
+
+
+export { register, login, userProfile, updateUser, updatePassword, forgotPassword, verifyOtp, resetPassword, deleteUser, getHostedQRs }

@@ -5,11 +5,28 @@ import { fileURLToPath } from "url"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+const getTargetFolder = (fieldname) => {
+    switch (fieldname) {
+        case 'profileImage':
+            return 'userImages';
+        case 'eventImage':
+            return 'eventImages';
+        case 'groupImage':
+            return 'groupImages';
+        case 'resourceImage':
+            return 'resourceImages';
+        default:
+            return 'other'; // Fallback folder
+    }
+}
+
 //file storage location and filename generation
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        let dest = path.join(__dirname, '..', '..', 'public', 'uploads', 'eventImages');
+        const folderName = getTargetFolder(file.fieldname);
 
+        let dest = path.join(__dirname, '..', '..', 'public', 'uploads', folderName);
+        
         cb(null, dest);
     },
 

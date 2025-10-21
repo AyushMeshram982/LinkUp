@@ -2,7 +2,7 @@ import express from "express"
 
 const router = express.Router();
 
-import { register, login, userProfile, updateUser, updatePassword, forgotPassword, verifyOtp, resetPassword, deleteUser } from "../controllers/user.controllers.js"
+import { register, login, userProfile, updateUser, updatePassword, forgotPassword, verifyOtp, resetPassword, deleteUser, getHostedQRs } from "../controllers/user.controllers.js"
 import { requireAuth } from "../middlewares/requireAuth.js";
 import upload from "../middlewares/upload.js";
 
@@ -32,5 +32,8 @@ router.post('/reset-password', resetPassword)
 
 //to delete the user / user account
 router.delete('/profile', requireAuth, deleteUser)
+
+//hosted events qr
+router.get("/hosted-qrs", requireAuth, getHostedQRs)
 
 export default router

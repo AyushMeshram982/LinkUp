@@ -4,7 +4,7 @@ import upload from "../middlewares/upload.js"
 
 const router = express.Router()
 
-import { Events, createEvent, singleEvent, updateEvent, deleteEvent, RegisterUserForEvent, likeEvent, comment } from "../controllers/event.controllers.js"
+import { Events, createEvent, singleEvent, updateEvent, deleteEvent, RegisterUserForEvent, likeEvent, comment, checkInUser } from "../controllers/event.controllers.js"
 
 // get all the events
 router.get("/", Events)
@@ -29,5 +29,8 @@ router.post("/:id/like", requireAuth, likeEvent)
 
 // Add a comment to the event
 router.post("/:id/comment", requireAuth, comment)
+
+//QR code check in route
+router.post("/checkin", requireAuth, checkInUser);
 
 export default router

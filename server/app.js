@@ -12,6 +12,17 @@ app.use(express.json()) //Essential: Allows Express to parse JSON data from req.
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
+// to render the images in frontend------------------------------------------------------------------- 
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// 👇 Add this line (serves images from public/uploads)
+app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
+// ---------------------------------------------------------------------------------------------------- 
+
 app.use("/", indexRoutes);
 
 const startServer = async () => {

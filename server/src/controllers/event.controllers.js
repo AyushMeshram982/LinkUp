@@ -9,6 +9,9 @@ import { generateAndSaveQrData } from "../utils/qrGeneratorService.js"
 const Events = async (req, res) => {
     const { city, isPaid, date, timeFrom, timeTo, search } = req.query;
 
+    console.log("city: ", city, " isPaid: ", isPaid, ' date: ', date, " timeFrom: ", timeFrom, " timeTo: ", timeTo, " search: ", search );
+    // console.log(req.query);
+
     //Buidling the query object
     let query = {}
     let sort = { date: 1, time: 1 };
@@ -34,6 +37,7 @@ const Events = async (req, res) => {
     //city filter: only show events in that city
     if(city){
         query.city = city;
+        console.log(city);
     }
 
     //status filter: Do not show cancelled events
@@ -55,11 +59,15 @@ const Events = async (req, res) => {
         //the date in req.query is in the form of string like: 2025-09-30, but in the database has data type as Date, meaning there it is stored with hours, minutes, seconds, milliseconds, like: 2025-09-30T19:30:00:000Z, so now we are making that string date that we received from req.query into actual javascript Date
         const selectedDate = new Date(date);
         const nextDay = new Date(selectedDate) //making copy of selectedDate
+        selectedDate.setHours(0, 0, 0, 0);
+        nextDay.setHours(0, 0, 0, 0);
 
         //Now here in the following line: selectedDate.getDate() returns the day, meaning if date is 2025-09-30T19:30:00:000Z, it gives 30, adding 1 in it makes it 31, then we use setDate to set the day, so if like date is dat = 2025-09-15 so if do: dat.setDate(20), so now dat is = 2025-09-20, But if it is dat = 2025-09-30 then we do dat.setDate(31) so as it knows september only has 30 days in it so it makes it: 2025-10-01, meaning moving it to the next correct date
         nextDay.setDate(selectedDate.getDate() + 1);
 
-        query.date = { $gte: selectedDate.setHours(0, 0, 0, 0), $lt: nextDay.setHours(0, 0, 0, 0) }
+        query.date = {$gte: new Date(selectedDate), $lt: new Date(nextDay)}
+
+        console.log('date: ', date, 'selected date: ', selectedDate, 'nextDay: ', nextDay, ' query.date: ' , query.date);
     }
 
     //Time filter
@@ -77,6 +85,8 @@ const Events = async (req, res) => {
         }
 
     }
+
+    // console.log(query);
 
     try{
         let pipeline = [];
@@ -97,6 +107,8 @@ const Events = async (req, res) => {
 
         //executing the pipeline
         const events = await Event.aggregate(pipeline);
+
+        console.log(events);
 
         //success response
         return res.status(200).json(events);

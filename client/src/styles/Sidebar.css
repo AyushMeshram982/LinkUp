@@ -1,0 +1,38 @@
+.sidebar {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    color: white;
+    gap: 20px;
+    padding: 20px;
+    z-index: 999;
+
+    transition: 0.4s ease-in-out;
+    transform: translateX(-100vw);
+    opacity: 0;
+
+}
+
+.sidebar-open {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.sidebar-close-button{
+    position: absolute;
+    right: 30px;
+    top: 25px;
+}
+
+.signup-and-login{
+    position: relative;
+    top: 15%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-weight: 700;
+    font-size: large;
+    left: 4%;
+}

@@ -194,7 +194,7 @@ const DiscoverySection = ({ onFilterChange, filters }) => {
     };
 
     return (
-        <section className="">
+        <section className="discovery-section">
             <div className="header-actionpart">
                 
                 {/* CTA */}
@@ -205,132 +205,83 @@ const DiscoverySection = ({ onFilterChange, filters }) => {
                 
                 {/* Search Bar and City Selector */}
                 <div className="city-search">
-                <form onSubmit={handleSearchSubmit} className="city-search-form">
-                    {/* City Selector */}
-                    <select
-                        name="city"
-                        value={filters.city} // Controlled input from filters state
-                        onChange={handleInputChange}
-                        className="city-selector"
-                    >
-                        <option value="Indore">Indore</option>
-                        <option value="Bhopal">Bhopal</option>
-                        <option value="Mumbai">Mumbai</option>
-                    </select>
+                    <form onSubmit={handleSearchSubmit} className="city-search-form">
+                        {/* City Selector */}
+                        <select name="city" value={filters.city} onChange={handleInputChange} className="city-selector" >
+                            <option value="Indore">Indore</option>
+                            <option value="Bhopal">Bhopal</option>
+                            <option value="Mumbai">Mumbai</option>
+                        </select>
 
-                    {/* Search Input with Clear Button */}
-                    <div className="search-wrapper">
-                        <input
-                            type="text"
-                            name="search"
-                            value={filters.search} // Controlled input from filters state
-                            placeholder='search'
-                            onChange={handleInputChange}
-                            className="search-selector"
-                        />
+                        {/* Search Input with Clear Button */}
+                        <div className="search-wrapper">
+                            <input type="text" name="search" value={filters.search} placeholder='search' onChange={handleInputChange} className="search-selector" />
 
-                        {/* need to see */}
-                        {/* <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" /> */}
-                        {filters.search && (
-                            <button 
-                                type="button"
-                                onClick={() => handleClearFilter('search')}
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-400 hover:text-red-500 transition focus:outline-none z-10"
-                            >
-                                <X className="h-4 w-4" />
-                            </button>
-                        )}
-                        {/* uptil here need to see */}
-                    </div>
+                                {/* need to see */}
+                                {/* <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" /> */}
+                                {filters.search && (
+                                    <button type="button" onClick={() => handleClearFilter('search')} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-400 hover:text-red-500 transition focus:outline-none z-10">
+                                        <X className="h-4 w-4" />
+                                    </button>
+                                )}
+                                {/* uptil here need to see */}
+                        </div>
                     
-                    <button type="submit" className="search-icon">
-                         <span className="material-symbols-outlined">search</span>
-                    </button>
-                </form>
-
-                {/* Filter Strip (Chips and Date/Time) */}
-                <div className="filter">
-                   
-                    
-                    {/* Paid/Free and Availability Chips */}
-                    {filterChips.map((chip) => (
-                        <button
-                            key={chip.label}
-                            type="button"
-                            onClick={() => handleChipClick(chip.key, chip.value)}
-                            className={`filter-chips ${filters[chip.key] === chip.value ? 'filter-selected' : '' }`}
-                        >
-                            {chip.label}
+                        <button type="submit" className="search-icon">
+                             <span className="material-symbols-outlined">search</span>
                         </button>
-                    ))}
-                    
-                    {/* Date Filter Input */}
-                    <div className="relative flex items-center group">
-                        <input 
-                            type="date" 
-                            name="dateFilter" 
-                            value={filters.dateFilter} 
-                            onChange={handleInputChange}
-                            // className="bg-gray-700 text-gray-300 px-3 py-2 rounded-full text-sm font-medium ml-3 appearance-none focus:ring-2 focus:ring-blue-500 border border-gray-700 pr-10"
-                            className="filter-chips"
-                        />
-                        <Calendar className="absolute right-4 text-gray-400 h-5 w-5 pointer-events-none group-hover:text-white" />
-                        {filters.dateFilter && (
-                            <button 
-                                type="button"
-                                onClick={() => handleClearFilter('dateFilter')}
-                                className="absolute right-0 mr-3 text-red-400 hover:text-red-500 transition focus:outline-none z-10 p-1"
-                            >
-                                <X className="h-4 w-4" />
-                            </button>
-                        )}
-                    </div>
-                    
-                    {/* Time From Filter Input */}
-                    <div className="relative flex items-center group">
-                        <input 
-                            type="time" 
-                            name="timeFrom" 
-                            value={filters.timeFrom} 
-                            onChange={handleInputChange}
-                            // className="bg-gray-700 text-gray-300 px-3 py-2 rounded-full text-sm font-medium ml-3 appearance-none focus:ring-2 focus:ring-blue-500 border border-gray-700 pr-10"
-                             className="filter-chips"
-                        />
-                         <Clock className="absolute right-4 text-gray-400 h-5 w-5 pointer-events-none group-hover:text-white" />
-                         {filters.timeFrom && (
-                            <button 
-                                type="button"
-                                onClick={() => handleClearFilter('timeFrom')}
-                                className="absolute right-0 mr-3 text-red-400 hover:text-red-500 transition focus:outline-none z-10 p-1"
-                            >
-                                <X className="h-4 w-4" />
-                            </button>
-                        )}
-                    </div>
-                    
-                    {/* Time To Filter Input */}
-                    <div className="relative flex items-center group">
-                        <input 
-                            type="time" 
-                            name="timeTo" 
-                            value={filters.timeTo} 
-                            onChange={handleInputChange}
-                            // className="bg-gray-700 text-gray-300 px-3 py-2 rounded-full text-sm font-medium ml-3 appearance-none focus:ring-2 focus:ring-blue-500 border border-gray-700 pr-10"
-                             className="filter-chips"
-                        />
-                        <Clock className="absolute right-4 text-gray-400 h-5 w-5 pointer-events-none group-hover:text-white" />
-                        {filters.timeTo && (
-                            <button 
-                                type="button"
-                                onClick={() => handleClearFilter('timeTo')}
-                                className="absolute right-0 mr-3 text-red-400 hover:text-red-500 transition focus:outline-none z-10 p-1"
-                            >
-                                <X className="h-4 w-4" />
-                            </button>
-                        )}
-                    </div>
+                    </form>
 
-                </div>
+                    {/* Filter Strip (Chips and Date/Time) */}
+                    <div className="filter">
+                    
+                        {/* Paid/Free and Availability Chips */}
+                        {filterChips.map((chip) => (
+                            <button key={chip.label} type="button" onClick={() => handleChipClick(chip.key, chip.value)} className={`filter-chips ${filters[chip.key] === chip.value ? 'filter-selected' : '' }`}>
+                                {chip.label}
+                            </button>
+                        ))}
+                    
+                        {/* Date Filter Input */}
+                        <div className="relative flex items-center group">
+                            <input type="date" name="dateFilter" value={filters.dateFilter} onChange={handleInputChange} className="filter-chips"/>
+
+                            <Calendar className="absolute right-4 text-gray-400 h-5 w-5 pointer-events-none group-hover:text-white" />
+
+                            {filters.dateFilter && (
+                                <button type="button" onClick={() => handleClearFilter('dateFilter')} className="absolute right-0 mr-3 text-red-400 hover:text-red-500 transition focus:outline-none z-10 p-1">
+                                    <X className="h-4 w-4" />
+                                </button>
+                            )}
+                        </div>
+                    
+                        {/* Time From Filter Input */}
+                        <div className="relative flex items-center group">
+                            <input type="time" name="timeFrom" value={filters.timeFrom} onChange={handleInputChange} className="filter-chips"/>
+
+                            <Clock className="absolute right-4 text-gray-400 h-5 w-5 pointer-events-none group-hover:text-white" />
+
+                            {filters.timeFrom && (
+                                <button type="button" onClick={() => handleClearFilter('timeFrom')} className="absolute right-0 mr-3 text-red-400 hover:text-red-500 transition focus:outline-none z-10 p-1">
+                                    <X className="h-4 w-4" />
+                                </button>
+                            )}
+                        </div>
+                    
+                        {/* Time To Filter Input */}
+                        <div className="relative flex items-center group">
+                            <input type="time" name="timeTo" value={filters.timeTo} onChange={handleInputChange} className="filter-chips"/>
+
+                            <Clock className="absolute right-4 text-gray-400 h-5 w-5 pointer-events-none group-hover:text-white" />
+
+                            {filters.timeTo && (
+                                <button type="button" onClick={() => handleClearFilter('timeTo')} className="absolute right-0 mr-3 text-red-400 hover:text-red-500 transition focus:outline-none z-10 p-1">
+                                    <X className="h-4 w-4" />
+                                </button>
+                            )}
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>

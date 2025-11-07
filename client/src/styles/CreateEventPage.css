@@ -1,0 +1,70 @@
+.create-event-page-cp{
+    /* border: 2px solid white; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* margin-top: 15px; */
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-the-event-heading-cp{
+    color: white;
+    margin-bottom: 14px;
+    border-bottom: 2px solid white;
+    
+}
+
+.create-event-form-cp{
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    color: white;
+    /* background-color: rgb(154, 101, 101); */
+    width: 50%;
+    padding: 13px;
+    border-radius: 12px;
+
+}
+
+.create-event-image-upload{
+    border-bottom: 2px solid white;
+    /* border-bottom: 2px solid white; */
+    padding-bottom: 10px;
+    border-radius: 12px;
+}
+
+.create-event-form-title-details-cp{
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.form-detail-input{
+    color: white;
+    border: 2px solid white;
+}
+
+.create-event-page-description-keywords-duration-cp{
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.create-event-page-description{
+    display: flex;
+    gap: 10px;
+}
+
+.form-detail-input-description-box{
+    width: 80%;
+}

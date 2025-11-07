@@ -1,0 +1,106 @@
+.event-card-ec{
+    /* border: 2px solid green; */
+    width: 350px;
+    /* border-radius: 20px; */
+    border: 1px solid rgb(60, 56, 56);
+    border-radius: 20px;
+}
+
+.event-card-image-ec{
+    /* border: 1px solid red; */
+    height: 80%;
+    /* border-radius: 20px; */
+    position: relative;
+    
+}
+
+.event-image{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-left: 1px solid rgb(60, 56, 56);
+    border-right: 1px solid rgb(60, 56, 56);
+    border-top: 1px solid rgb(60, 56, 56);
+
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1));
+}
+
+.seats-remain-ec{
+    /* border: 2px solid red; */
+    
+}
+
+.seats-still-remain-ec{
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.seats-not-remain-ec{
+
+    position: absolute;
+    left: 10px;
+    top: 50px;
+
+    width: 100px;
+    /* border: 2px solid red; */
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgb(192, 41, 41);
+    transform: rotateZ(-5deg);
+}
+
+
+.event-title-ec{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 25px;
+    left: 15px;
+}
+
+.event-card-comments-ec{
+    color: white;
+    font-size: 13px;
+    position: absolute;
+    bottom: 7px;
+    left: 15px;
+    
+}
+
+.register-closed-button-ec{
+    color: white;
+    width: 130px;
+    height: 40px;
+    font-weight: bold;
+    background: linear-gradient(#42A5F5, #4400ff);
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    border-radius: 30px;
+}
+
+.lower-part-ec{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 8px;
+}
+
+.like-share-ec{
+    display: flex;
+    gap: 10px;
+}
+
+.share-button-ec{
+    color: white;
+}

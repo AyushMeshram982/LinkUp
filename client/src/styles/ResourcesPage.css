@@ -1,0 +1,38 @@
+.resources-page{
+    margin-top: 80px;
+    /* border: 2px solid green; */
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.all-resource-cards-rc{
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    width: 77%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+    gap: 20px;
+    overflow: hidden;
+    padding: 16px;
+    border-radius: 20px;
+}
+
+.create-new-resource{
+    height: 50px;
+    width: 50px;
+    background: linear-gradient(#42A5F5, #4400ff);
+    position: fixed;
+    right: 90px;
+    bottom: 200px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}

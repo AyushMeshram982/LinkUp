@@ -1,0 +1,67 @@
+.events-page{
+    margin-top: 80px;
+    /* border: 2px solid green; */
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.all-event-cards-ep{
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    width: 77%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    overflow: hidden;
+    padding: 16px;
+    border-radius: 20px;
+}
+
+.create-new-event{
+    height: 50px;
+    width: 50px;
+    background: linear-gradient(#42A5F5, #4400ff);
+    position: fixed;
+    right: 100px;
+    bottom: 200px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.go-to-dashboard{
+    height: 50px;
+    width: 50px;
+    background: linear-gradient(#42A5F5, #4400ff);
+    position: fixed;
+    right: 100px;
+    bottom: 130px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.scan-the-ticket{
+    height: 50px;
+    width: 50px;
+    background: linear-gradient(#42A5F5, #4400ff);
+    position: fixed;
+    right: 100px;
+    bottom: 70px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

@@ -14,16 +14,6 @@ export const fetchEvents = (filters) => {
         params.search = filters.search;
     }
 
-    //chip filters (sent as 'true' or 'false' strings, or undefined if null)
-    // if(filters.isPaid !== null){
-    //     params.isPaid = filters.isPaid ? 'true' : 'false';
-    // }
-
-    // if(filters.seatsAvailable !== null){
-    //     //Note: the backend logic for this is complex, so we pass it as a boolean string
-    //     params.seatsAvailable = filters.seatsAvailable ? 'true' : 'false';
-    // }
-
     if(filters.isPaid){
         params.isPaid = filters.isPaid;
     }
@@ -53,6 +43,32 @@ export const fetchSingleEvent = (eventId) => {
 //registering the user for an event
 export const registerUserForEvent = (eventId, seats) => {
     return API.post(`${EVENT_URL}/${eventId}/register`, { seats });
+};
+
+export const commentEvent = (eventId, text) => {
+    //Interceptor attaches the user's JWT
+    return API.post(`${EVENT_URL}/${eventId}/comment`, { text });
+};
+
+export const likeEvent = (eventId) => {
+    //Interceptor attaches the user's JWT
+    return API.post(`${EVENT_URL}/${eventId}/like`); 
+}
+
+export const checkInUser = (qrToken) => {
+    // Interceptor attaches the user's JWT
+    return API.post(`${EVENT_URL}/checkin`, { qrToken });
+};
+
+export const createEvent = (formData) => {
+    // Interceptor attaches the user's JWT (requireAuth on backend)
+    // CRITICAL: We explicitly set the Content-Type to 'multipart/form-data' 
+    // to ensure the file upload is handled correctly, even though Axios often guesses it.
+    return API.post(EVENT_URL, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data', 
+        }
+    });
 };
 
 //Will add more functions

@@ -1,0 +1,38 @@
+.groups-page{
+    margin-top: 80px;
+    /* border: 2px solid green; */
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.all-group-cards-gc{
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    width: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 16px;
+}
+
+.create-new-group{
+    height: 50px;
+    width: 50px;
+    background: linear-gradient(#42A5F5, #4400ff);
+    position: fixed;
+    right: 40px;
+    bottom: 200px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}

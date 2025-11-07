@@ -8,6 +8,7 @@ import { Event } from "../models/event.model.js"
 import { Group } from "../models/group.model.js";
 import { Resource } from "../models/resource.model.js";
 import { sendEmail } from "../utils/emailService.js"
+import mongoose from "mongoose"
 
 //for deleteUser
 import { findFutureEventAndNotifyUsersOfCancelledEvents } from "../utils/findFutureEventsAndSendMails.js"
@@ -494,5 +495,61 @@ const getHostedQRs = async (req, res) => {
 
 };
 
+const getHostedEvents = async (req, res) => {
+    // The host ID is provided securely by the requireAuth middleware
+    const hostId = req.user._id; 
 
-export { register, login, userProfile, updateUser, updatePassword, forgotPassword, verifyOtp, resetPassword, deleteUser, getHostedQRs }
+    try {
+        const hostObjectId = new mongoose.Types.ObjectId(hostId);
+
+        // --- Use AGGREGATION to filter by hostId and calculate seatsTaken ---
+        const pipeline = [
+            // Stage 1: Filter events posted by the authenticated user
+            { $match: { hostId: hostObjectId } },
+
+            // Stage 2: Calculate the total number of seats taken for each event
+            {
+                $addFields: {
+                    // Calculate sum of the 'seats' field from the 'registeredAttendees' array
+                    seatsTaken: { $sum: "$registeredAttendees.seats" }
+                }
+            },
+
+            // Stage 3: Project and sort the required fields
+            {
+                $project: {
+                    // Explicitly include all fields required for the dashboard
+                    title: 1,
+                    city: 1,
+                    address: 1,
+                    date: 1,
+                    time: 1,
+                    isPaid: 1,
+                    price: 1,
+                    hours: 1,
+                    totalSeats: 1,
+                    isCancelled: 1,
+                    qrCodeUrl: 1, // CRITICAL: Include the QR URL here (private data)
+                    qrTokenExpires: 1,
+                    seatsTaken: 1, // Calculated field
+                    registeredAttendees: 1 // Include full array for host's reference
+                }
+            },
+
+            // Stage 4: Sort by date descending (latest/upcoming events at the top)
+            { $sort: { date: -1, time: -1 } }
+        ];
+
+        const hostedEvents = await Event.aggregate(pipeline);
+
+        // 3. Success Response
+        return res.status(200).json(hostedEvents);
+
+    } catch (error) {
+        console.error("Fetch Hosted Events Error:", error);
+        return res.status(500).json({ error: `Server error while fetching hosted events: ${error.message}` });
+    }
+};
+
+
+export { register, login, userProfile, updateUser, updatePassword, forgotPassword, verifyOtp, resetPassword, deleteUser, getHostedQRs, getHostedEvents }

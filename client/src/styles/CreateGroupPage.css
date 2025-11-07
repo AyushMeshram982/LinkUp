@@ -1,0 +1,66 @@
+.create-group-page-gp{
+    /* border: 2px solid white; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-the-group-heading-gp{
+        color: white;
+    margin-bottom: 14px;
+    border-bottom: 2px solid white;
+}
+
+.create-group-form-gp{
+     border-left: 2px solid white;
+    border-right: 2px solid white;
+    color: white;
+    /* background-color: rgb(154, 101, 101); */
+    width: 50%;
+    padding: 13px;
+    border-radius: 12px;
+}
+
+.create-group-image-upload{
+    border-bottom: 2px solid white;
+    /* border-bottom: 2px solid white; */
+    padding-bottom: 10px;
+    border-radius: 12px;
+}
+
+.create-group-form-title-details-gp{
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.form-detail-input-gp{
+    color: white;
+    border: 2px solid white;
+}
+
+.create-group-page-description-keywords-duration-gp{
+        border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.create-group-page-description{
+        display: flex;
+    gap: 10px;
+}
+
+.form-detail-input-description-box-gp{
+    width: 80%;
+    border: 2px solid white;
+}

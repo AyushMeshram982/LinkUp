@@ -180,6 +180,8 @@ const createEvent = async (req, res) => {
     
     const hostId = req.user._id;
 
+    console.log(req.body)
+
     //getting data from form (req.body) and file path (req.file)
     const { title, description, city, address, keywords, date, time, isPaid, totalSeats, price, hours } = req.body;
 

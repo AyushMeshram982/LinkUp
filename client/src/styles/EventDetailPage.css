@@ -1,0 +1,142 @@
+.event-detail-page-ep{
+    /* border: 2px solid white; */
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px 60px;
+    display: flex;
+}
+
+.left-interaction-ep{
+    border-right: 2px solid white;
+    width: 50%;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.event-detail-page-image-ep{
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.event-detail-page-title-ep{
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.event-detail-page-host-ep{
+    color: white;
+    margin-left: 10px;
+}
+
+.event-detail-page-title-host-container-ep{
+    padding-bottom: 5px;
+    border-bottom: 2px solid rgb(89, 81, 81);
+}
+
+.event-detail-page-description-heading-ep{
+    color: white;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.event-detail-page-description-ep{
+    color: rgb(135, 121, 121);
+    margin-left: 20px;
+    margin-bottom: 30px;
+
+}
+
+.event-detail-page-discussion-container-ep{
+    /* border: 2px solid white; */
+    padding-left: 10px;
+}
+
+.event-detail-page-discussion-heading-ep{
+    color: white;
+    font-weight: bold;
+    font-size: 21px;
+    margin-bottom: 10px;
+
+}
+
+.event-detail-page-comment-list-ep{
+    /* border: 2px solid white; */
+    margin-top: 15px;
+}
+
+.each-event-detail-page-comment-ep{
+    /* border: 2px solid red; */
+    margin-bottom: 15px;
+}
+
+.right-interaction-ep{
+    border-left: 2px solid white;
+    width: 50%;
+    padding: 30px;
+    border-radius: 20px;
+    /* padding-bottom: 15px; */
+}
+
+.event-detail-page-ticket-details-ep{
+    border-bottom: 2px solid white;
+    border-radius: 20px;
+    padding-bottom: 15px;
+}
+
+.event-detail-page-ticket-heading-ep{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.event-details-page-availibility-bar-ep{
+    margin-bottom: 1rem;
+}
+
+.event-detail-page-availibility-ep{
+    margin-top: 10px;
+}
+
+.event-detail-page-seats-changing-ep{
+    margin-left: 10px;
+}
+
+.event-detail-page-registration-button-ep{
+    margin-top: 10px;
+    height: 30px;
+}
+
+.event-detail-page-host-dashboard-button-ep{
+    margin-top: 10px;
+}
+
+.event-detail-page-location-time-data-ep{
+    /* margin-top: 15px; */
+    padding-top: 15px;
+    border-radius: 20px;
+    border-top: 2px solid white;
+    
+}
+
+.event-detail-page-event-details-heading-ep{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.event-detail-meta-data-ep{
+    margin-left: 5px;
+}
+
+.event-details-page-like-share-ep{
+    border: 2px solid rgb(56, 48, 48);
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 20px;
+}

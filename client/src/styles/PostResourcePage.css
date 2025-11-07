@@ -1,0 +1,31 @@
+.create-resource-page-rp{
+    
+    /* border: 2px solid white; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-the-resource-heading-rp{
+     color: white;
+    margin-bottom: 14px;
+    border-bottom: 2px solid white;
+}
+
+.create-post-form-rp{
+         border-left: 2px solid white;
+    border-right: 2px solid white;
+    color: white;
+    /* background-color: rgb(154, 101, 101); */
+    width: 50%;
+    padding: 13px;
+    border-radius: 12px;
+}
+
+.form-detail-input-rp{
+    border: 2px solid white;
+}
+
+.form-detail-input-rp-description{
+    width: 80%;
+}
